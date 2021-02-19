@@ -1,5 +1,7 @@
 package com.practice.reddit.controller;
 
+import com.practice.reddit.dto.AuthenticationResponse;
+import com.practice.reddit.dto.LoginRequest;
 import com.practice.reddit.dto.RegisterRequest;
 import com.practice.reddit.service.AuthService;
 import lombok.AllArgsConstructor;
@@ -27,6 +29,11 @@ public class AuthController {
     public ResponseEntity<String> verifyAccount(@PathVariable String token) {
         authService.verifyAccount(token);
         return new ResponseEntity<>("account activated successfully", HttpStatus.OK);
+    }
+
+    @PostMapping("/login")
+    public AuthenticationResponse login(@RequestBody LoginRequest loginRequest) {
+        return authService.login(loginRequest);
     }
 
 }
